@@ -204,3 +204,476 @@ import './App.css';
 // }
 
 // export default App;
+// /** @jsxImportSource @emotion/react */
+// import { css } from '@emotion/react';
+// import { useEffect, useState } from 'react';
+// import LoadingIndicator from './LoadingIndicator';
+
+// const topHeading = css`
+// text-align: center``
+
+// const useLoader = () => {
+//   const [loading, setLoading] = useState(false);
+//   return [
+//     loading ? <LoadingIndicator /> : null,
+//     () => setLoading(true), // Show the loading indicator
+//     () => setLoading(false), // Hide the loading indicator
+//   ];
+// };
+
+// export default function App() {
+//   const baseUrl = 'https://olgas-react-guest-list.herokuapp.com';
+//   const [guestList, setGuestList] = useState([]);
+//   const [firstName, setFirstName] = useState('');
+//   const [lastName, setLastName] = useState('');
+//   const [isAttending, setIsAttending] = useState(false);
+//   const [loader, showLoader, hideLoader] = useLoader();
+
+//   useEffect(() => {
+//     const getList = async () => {
+//       showLoader();
+//       const response = await fetch(`${baseUrl}/`);
+//       const allGuests = await response.json();
+
+//       setGuestList(allGuests);
+//       setIsAttending(false);
+//     };
+
+//     getList();
+//     hideLoader();
+//   });
+//   // Add new guest:
+//   async function newGuest() {
+//     const response = await fetch(`${baseUrl}/`, {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({
+//         firstName: firstName,
+//         lastName: lastName,
+//       }),
+//     });
+//     const createdGuest = await response.json();
+//     return createdGuest;
+//   }
+
+//   const handleSubmit = (event) => {
+//     newGuest();
+//     event.preventDefault();
+//     event.target.reset();
+//   };
+//   // Delete guests:
+//   function handleDelete(id) {
+//     async function deleteGuest() {
+//       const response = await fetch(`${baseUrl}/${id}`, {
+//         method: 'DELETE',
+//       });
+//       const deletedGuest = await response.json();
+//       return deletedGuest;
+//     }
+//     deleteGuest();
+//   }
+//   // attend function
+//   function handleAttend(id) {
+//     async function editGuest() {
+//       const response = await fetch(`${baseUrl}/${id}`, {
+//         method: 'PATCH',
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify({ attending: true }),
+//       });
+
+//       const updatedGuest = await response.json();
+//       return updatedGuest;
+//     }
+//     editGuest();
+//   }
+
+//   return (
+//     <>
+//       <section>
+//         <div>
+//           <h1 css={topHeading}>Join the Party:</h1>
+//           <form onSubmit={handleSubmit}>
+//             <label htmlFor={firstName}>
+//               First Name:
+//               <input
+//                 onChange={(event) => setFirstName(event.currentTarget.value)}
+//               />
+//             </label>
+//             <label htmlFor={lastName}>
+//               Last Name:
+//               <input
+//                 onChange={(event) => setLastName(event.currentTarget.value)}
+//               />
+//             </label>
+//             <button>Add guest</button>
+//           </form>
+//           {loader}
+//         </div>
+//       </section>
+
+//       <section className="listBackground">
+//         <div>
+//           <div>
+//             <h2>Guest List</h2>
+
+//             <table>
+//               <tbody>
+//                 {guestList.map((guest) => (
+//                   <tr key={guest.id}>
+//                     <td className="tdName">{guest.firstName}</td>
+//                     <td className="tdName">{guest.lastName}</td>
+//                     <td>
+//                       <button
+//                         className={
+//                           guest.attending
+//                             ? 'attendButtonConfirmed'
+//                             : 'attendButton'
+//                         }
+//                         type="button"
+//                         onClick={() => {
+//                           handleAttend(guest.id);
+//                         }}
+//                       >
+//                         &#10003;
+//                       </button>
+//                     </td>
+//                     <td>
+//                       <button
+//                         className="deleteButton"
+//                         type="button"
+//                         onClick={() => handleDelete(guest.id)}
+//                         id="delete"
+//                       >
+//                         x
+//                       </button>
+//                     </td>
+//                   </tr>
+//                 ))}
+//               </tbody>
+//             </table>
+//           </div>
+//         </div>
+//       </section>
+//     </>
+//   );
+// }
+
+// /** @jsxImportSource @emotion/react */
+// import { css } from '@emotion/react';
+// import { useEffect, useState } from 'react';
+// import LoadingIndicator from './LoadingIndicator';
+
+// const topHeading = css`
+// text-align: center``
+
+// const useLoader = () => {
+//   const [loading, setLoading] = useState(false);
+//   return [
+//     loading ? <LoadingIndicator /> : null,
+//     () => setLoading(true), // Show the loading indicator
+//     () => setLoading(false), // Hide the loading indicator
+//   ];
+// };
+
+// export default function App() {
+//   const baseUrl = 'https://olgas-react-guest-list.herokuapp.com';
+//   const [guestList, setGuestList] = useState([]);
+//   const [firstName, setFirstName] = useState('');
+//   const [lastName, setLastName] = useState('');
+//   const [isAttending, setIsAttending] = useState(false);
+//   const [loader, showLoader, hideLoader] = useLoader();
+
+//   useEffect(() => {
+//     const getList = async () => {
+//       showLoader();
+//       const response = await fetch(`${baseUrl}/`);
+//       const allGuests = await response.json();
+
+//       setGuestList(allGuests);
+//       setIsAttending(false);
+//     };
+
+//     getList();
+//     hideLoader();
+//   });
+//   // Add new guest:
+//   async function newGuest() {
+//     const response = await fetch(`${baseUrl}/`, {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({
+//         firstName: firstName,
+//         lastName: lastName,
+//       }),
+//     });
+//     const createdGuest = await response.json();
+//     return createdGuest;
+//   }
+
+//   const handleSubmit = (event) => {
+//     newGuest();
+//     event.preventDefault();
+//     event.target.reset();
+//   };
+//   // Delete guests:
+//   function handleDelete(id) {
+//     async function deleteGuest() {
+//       const response = await fetch(`${baseUrl}/${id}`, {
+//         method: 'DELETE',
+//       });
+//       const deletedGuest = await response.json();
+//       return deletedGuest;
+//     }
+//     deleteGuest();
+//   }
+//   // attend function
+//   function handleAttend(id) {
+//     async function editGuest() {
+//       const response = await fetch(`${baseUrl}/${id}`, {
+//         method: 'PATCH',
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify({ attending: true }),
+//       });
+
+//       const updatedGuest = await response.json();
+//       return updatedGuest;
+//     }
+//     editGuest();
+//   }
+
+//   return (
+//     <>
+//       <section>
+//         <div>
+//           <h1 css={topHeading}>Join the Party:</h1>
+//           <form onSubmit={handleSubmit}>
+//             <label htmlFor={firstName}>
+//               First Name:
+//               <input
+//                 onChange={(event) => setFirstName(event.currentTarget.value)}
+//               />
+//             </label>
+//             <label htmlFor={lastName}>
+//               Last Name:
+//               <input
+//                 onChange={(event) => setLastName(event.currentTarget.value)}
+//               />
+//             </label>
+//             <button>Add guest</button>
+//           </form>
+//           {loader}
+//         </div>
+//       </section>
+
+//       <section className="listBackground">
+//         <div>
+//           <div>
+//             <h2>Guest List</h2>
+
+//             <table>
+//               <tbody>
+//                 {guestList.map((guest) => (
+//                   <tr key={guest.id}>
+//                     <td className="tdName">{guest.firstName}</td>
+//                     <td className="tdName">{guest.lastName}</td>
+//                     <td>
+//                       <button
+//                         className={
+//                           guest.attending
+//                             ? 'attendButtonConfirmed'
+//                             : 'attendButton'
+//                         }
+//                         type="button"
+//                         onClick={() => {
+//                           handleAttend(guest.id);
+//                         }}
+//                       >
+//                         &#10003;
+//                       </button>
+//                     </td>
+//                     <td>
+//                       <button
+//                         className="deleteButton"
+//                         type="button"
+//                         onClick={() => handleDelete(guest.id)}
+//                         id="delete"
+//                       >
+//                         x
+//                       </button>
+//                     </td>
+//                   </tr>
+//                 ))}
+//               </tbody>
+//             </table>
+//           </div>
+//         </div>
+//       </section>
+//     </>
+//   );
+// }
+
+// /** @jsxImportSource @emotion/react */
+// import { css } from '@emotion/react';
+// import { useEffect, useState } from 'react';
+// import LoadingIndicator from './LoadingIndicator';
+
+// const topHeading = css`
+// text-align: center``
+
+// const useLoader = () => {
+//   const [loading, setLoading] = useState(false);
+//   return [
+//     loading ? <LoadingIndicator /> : null,
+//     () => setLoading(true), // Show the loading indicator
+//     () => setLoading(false), // Hide the loading indicator
+//   ];
+// };
+
+// export default function App() {
+//   const baseUrl = 'https://olgas-react-guest-list.herokuapp.com';
+//   const [guestList, setGuestList] = useState([]);
+//   const [firstName, setFirstName] = useState('');
+//   const [lastName, setLastName] = useState('');
+//   const [isAttending, setIsAttending] = useState(false);
+//   const [loader, showLoader, hideLoader] = useLoader();
+
+//   useEffect(() => {
+//     const getList = async () => {
+//       showLoader();
+//       const response = await fetch(`${baseUrl}/`);
+//       const allGuests = await response.json();
+
+//       setGuestList(allGuests);
+//       setIsAttending(false);
+//     };
+
+//     getList();
+//     hideLoader();
+//   });
+//   // Add new guest:
+//   async function newGuest() {
+//     const response = await fetch(`${baseUrl}/`, {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({
+//         firstName: firstName,
+//         lastName: lastName,
+//       }),
+//     });
+//     const createdGuest = await response.json();
+//     return createdGuest;
+//   }
+
+//   const handleSubmit = (event) => {
+//     newGuest();
+//     event.preventDefault();
+//     event.target.reset();
+//   };
+//   // Delete guests:
+//   function handleDelete(id) {
+//     async function deleteGuest() {
+//       const response = await fetch(`${baseUrl}/${id}`, {
+//         method: 'DELETE',
+//       });
+//       const deletedGuest = await response.json();
+//       return deletedGuest;
+//     }
+//     deleteGuest();
+//   }
+//   // attend function
+//   function handleAttend(id) {
+//     async function editGuest() {
+//       const response = await fetch(`${baseUrl}/${id}`, {
+//         method: 'PATCH',
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify({ attending: true }),
+//       });
+
+//       const updatedGuest = await response.json();
+//       return updatedGuest;
+//     }
+//     editGuest();
+//   }
+
+//   return (
+//     <>
+//       <section>
+//         <div>
+//           <h1 css={topHeading}>Join the Party:</h1>
+//           <form onSubmit={handleSubmit}>
+//             <label htmlFor={firstName}>
+//               First Name:
+//               <input
+//                 onChange={(event) => setFirstName(event.currentTarget.value)}
+//               />
+//             </label>
+//             <label htmlFor={lastName}>
+//               Last Name:
+//               <input
+//                 onChange={(event) => setLastName(event.currentTarget.value)}
+//               />
+//             </label>
+//             <button>Add guest</button>
+//           </form>
+//           {loader}
+//         </div>
+//       </section>
+
+//       <section className="listBackground">
+//         <div>
+//           <div>
+//             <h2>Guest List</h2>
+
+//             <table>
+//               <tbody>
+//                 {guestList.map((guest) => (
+//                   <tr key={guest.id}>
+//                     <td className="tdName">{guest.firstName}</td>
+//                     <td className="tdName">{guest.lastName}</td>
+//                     <td>
+//                       <button
+//                         className={
+//                           guest.attending
+//                             ? 'attendButtonConfirmed'
+//                             : 'attendButton'
+//                         }
+//                         type="button"
+//                         onClick={() => {
+//                           handleAttend(guest.id);
+//                         }}
+//                       >
+//                         &#10003;
+//                       </button>
+//                     </td>
+//                     <td>
+//                       <button
+//                         className="deleteButton"
+//                         type="button"
+//                         onClick={() => handleDelete(guest.id)}
+//                         id="delete"
+//                       >
+//                         x
+//                       </button>
+//                     </td>
+//                   </tr>
+//                 ))}
+//               </tbody>
+//             </table>
+//           </div>
+//         </div>
+//       </section>
+//     </>
+//   );
+// }
