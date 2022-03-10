@@ -181,7 +181,7 @@ export default function App() {
       console.log.error(error);
     });
   }
-  // Removing guest
+  // delete guest
   function handleDelete(id) {
     async function deleteGuest() {
       const response = await fetch(`${baseUrl}/guests/${id}`, {
